@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bi16q3ttrdl3m"]
 
-[ext_resource type="Script" uid="uid://dpht5835ikmxa" path="res://Scenes/character_body_2d.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://dpht5835ikmxa" path="res://Scripts/character_body_2d.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c3x7yl4fsdsrx" path="res://Art/Player_test_anim.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://dn0yovrq7msh4" path="res://icon.svg" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hqsl"]
 
@@ -48,6 +49,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hqsl"]
+
 [node name="Player" type="Node2D" unique_id=1830398823]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1879999799]
@@ -60,7 +63,21 @@ shape = SubResource("CapsuleShape2D_4hqsl")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4hqsl")
 animation = &"Walk"
-frame_progress = 0.03727917
+frame_progress = 0.8954326
 
 [node name="Players_camera" type="Camera2D" parent="CharacterBody2D" unique_id=560958381]
 zoom = Vector2(2.591, 2.591)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="Hit_area" type="Area2D" parent="CharacterBody2D" unique_id=33526394]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hit_area" unique_id=179023581]
+position = Vector2(21, 0)
+shape = SubResource("RectangleShape2D_4hqsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Hit_area" unique_id=1190632368]
+visible = false
+position = Vector2(21, 0)
+scale = Vector2(0.146, 0.146)
+texture = ExtResource("3_6t5aa")

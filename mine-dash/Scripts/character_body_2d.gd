@@ -1,10 +1,9 @@
 extends CharacterBody2D
 @onready var player_sprite: AnimatedSprite2D = $Player_sprite
-
+@onready var hit_area: Area2D = $Hit_area
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -16,6 +15,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	var direction := Input.get_axis("Left", "Right")
+	
 	if direction:
 		velocity.x = direction * SPEED
 		player_sprite.play("Walk")
@@ -23,9 +23,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		player_sprite.frame = 0
 
-	if direction < 0:
-		player_sprite.flip_h = true
-	elif direction > 0:
-		player_sprite.flip_h = false
-
+	if direction < 0: player_sprite.flip_h = true
+	elif direction > 0: player_sprite.flip_h = false
+	
+	var attack_offset = -60.0 if player_sprite.flip_h else 0.0
+	hit_area.position = Vector2(attack_offset, 0.0)
+	
 	move_and_slide()

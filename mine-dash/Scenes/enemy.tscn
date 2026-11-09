@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cbp54ystmurw8"]
+
+[ext_resource type="Script" uid="uid://dowefhykc0jxp" path="res://Scenes/rigid_body_2d.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://bk40mj5rjki71" path="res://Art/ENEMY.png" id="2_1f0kj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
+
+[node name="Enemy" type="Node2D" unique_id=1118960418]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1874842997]
+script = ExtResource("1_1f0kj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=465674085]
+shape = SubResource("CircleShape2D_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=961494291]
+texture_filter = 1
+texture = ExtResource("2_1f0kj")
+
+[node name="Ray cast L" type="RayCast2D" parent="." unique_id=768047243]
+position = Vector2(-15, 0)
+target_position = Vector2(0, 15.137)
+
+[node name="Ray cast R" type="RayCast2D" parent="." unique_id=1414831459]
+position = Vector2(15, 0)
+target_position = Vector2(0, 15.137)
